@@ -1,10 +1,12 @@
+import java.util.Arrays;
 
 public class ArrayMethods2 {
 	public static void main (String args[]) 
 	{
-		String[] temp1 = {"apple","banana","cat","dog","elephant"};
-		String[] temp2 = {"ahnaf","bong","my","for","young","zebra"};
+		String[] temp1 = {"banana","cat"};
+		String[] temp2 = {"ahnaf","corgi","for","my","zebra"};
 		printArray(merge(temp1, temp2));
+		printArray(mergeSort(temp1));
 	}
 	public static String[] merge(String[] list1, String[]list2) 
 	{
@@ -69,7 +71,16 @@ public class ArrayMethods2 {
 	}
 	public static String[] mergeSort(String[] list)
 	{
-		return null;
+		System.out.println("debug"+list.length);
+		if(list.length == 1)
+		{
+			return list;
+		}
+		else
+		{
+			list = merge(mergeSort(Arrays.copyOfRange(list, 0, list.length/2)), mergeSort(Arrays.copyOfRange(list, (int) list.length/2, list.length)));
+		}
+		return list;
 	}
 	public static int partition(int[] list)
 	{
