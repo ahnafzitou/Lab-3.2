@@ -2,41 +2,64 @@
 public class ArrayMethods2 {
 	public static void main (String args[]) 
 	{
-		String[] temp1 = {"zebra","banana","cat","dog","elephant"};
-		String[] temp2 = {"zebra","bong","my","for","young","zebra"};
+		String[] temp1 = {"apple","banana","cat","dog","elephant"};
+		String[] temp2 = {"ahnaf","bong","my","for","young","zebra"};
 		printArray(merge(temp1, temp2));
 	}
 	public static String[] merge(String[] list1, String[]list2) 
 	{
 		String[] merged = new String[list1.length + list2.length];
-		String[] t1 = copyArray(list1);
-		String[] t2 = copyArray(list2);
-		for(int i = 0; i < list1.length; i++)
-		{
-			merged[i] = t1[i];
-		}
-		for(int n = list1.length; n < merged.length; n++)
-		{
-			merged[n] = t2[n - list1.length];
-		}
-		String[] m1 = copyArray(merged);
-		boolean condition = false;
-		while(!condition)
-		{
-			for(int l = 0; l < m1.length-1; l++)
+		int count = 0;
+		
+		int l1 = 0;
+		int l2 = 0;
+		while(l1 + l2 < merged.length) {
+			if(l1 == list1.length)
 			{
-				condition = true;
-				if(m1[l].compareTo(m1[l+1]) > 0)
+				for(int i = l2; i < list2.length; i++)
 				{
-					System.out.println("Switching:" +m1[l]+" and "+m1[l+1]);
-					String temp = m1[l];
-					m1[l] = m1[l + 1];
-					m1[l + 1] = temp;
-					condition = false;
+					merged[count] = list2[l2];
+					count++;
+					l2++;
 				}
+				break;
+			}
+			if(l2 == list2.length)
+			{
+				for(int i = l1; i < list1.length; i++)
+				{
+					merged[count] = list1[l1];
+					count++;
+					l1++;
+				}
+				break;
+			}
+			if(list1[l1].compareTo(list2[l2]) < 0)
+			{
+				merged[count] = list1[l1];
+				count++;
+				l1++;
+				continue;
+			}
+			if(list2[l2].compareTo(list1[l1]) < 0)
+			{
+				merged[count] = list2[l2];
+				count++;
+				l2++;
+				continue;
+			}
+			if(list1[l1].compareTo(list2[l2]) == 0)
+			{
+				merged[count] = list1[l1];
+				count++;
+				l1++;
+				merged[count] = list2[l2];
+				count++;
+				l2++;
+				continue;
 			}
 		}
-		return m1;
+		return merged;
 	}
 	public static void swap(String[] arr, int i, int j)
 	{
