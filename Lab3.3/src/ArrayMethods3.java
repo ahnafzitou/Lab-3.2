@@ -1,12 +1,28 @@
+
 public class ArrayMethods3 {
 	public static void main(String args[]){
 		int[] temp = {3,6,7,2,1,7,12,11};
-		System.out.println(indexOfMin(06, temp));
 		String[] temp2 = {"cat","zebra","dog","elephant","elephant",""};
+		double[] temp3 = {0.1,7.1,4.0,3.2,3.4,-1.4,14.2};
+		long temp4 = 0;
+
+		temp4 = System.nanoTime();
+		insertionSort(temp);
+		temp4 = System.nanoTime() - temp4;
+		System.out.println("insertionsort: "+temp4);
+		printArray(temp);
+		
+		temp4 = System.nanoTime();
 		bubbleSort(temp2);
+		temp4 = System.nanoTime() - temp4;
+		System.out.println("bubblesort: "+temp4);
 		printArray(temp2);
-		double[] temp3 = {0.1,7.1,4.0,3.2};
+		
+
+		temp4 = System.nanoTime();
 		selectionSort(temp3);
+		temp4 = System.nanoTime() - temp4;
+		System.out.println("selectionSort: "+temp4);
 		printArray(temp3);
 	}
 	public static void insertionSort(int[] list1)
@@ -50,15 +66,14 @@ public class ArrayMethods3 {
 	public static int indexOfMin(int first, double[] list1)
 	{
 		double temp = list1[first];
-		int index = first;
 		for(int i  = first; i < list1.length; i++)
 		{
 			if(temp > list1[i]) {
 				temp = list1[i];
-				index = i;
+				first = i;
 			}
 		}
-		return index;
+		return first;
 	}
 	public static void bubbleSort(String[] list) {
 		boolean sorted = false;
