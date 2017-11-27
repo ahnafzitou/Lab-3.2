@@ -2,31 +2,32 @@ public class ArrayMethods3 {
 	public static void main(String args[]){
 		int[] temp = {3,6,7,2,1,7,12,11};
 		System.out.println(indexOfMin(06, temp));
+		String[] temp2 = {"cat","zebra","dog","elephant","elephant",""};
+		bubbleSort(temp2);
+		printArray(temp2);
+		double[] temp3 = {0.1,7.1,4.0,3.2};
+		selectionSort(temp3);
+		printArray(temp3);
 	}
-	public static void insertSort(int[] list1){
-		int x = list1[0];
-		int count = 0;
-		int temp = 0;
-		boolean sorted = false;
-		while(!sorted)		
+	public static void insertionSort(int[] list1)
+	{
+		int index = 0;
+		for (int i = 0; i < list1.length - 1; i++)
 		{
-			sorted = true;
-			for(int j = 0; j < list1.length; j++)
+			if (list1[i] > list1[i + 1])
 			{
-				if(x > list1[j])
+				index = i + 1;
+				for (int j = i; j > -1; j--)
 				{
-					sorted = false;
-					x = list1[j];
-					count = j;
-					System.out.println("Min"+list1[count]+"index:"+count);
+					if (list1[index] < list1[j])
+					{
+						swap(list1, index, j);
+						index = j;
+					}
 				}
 			}
-			swap(list1, temp, count);
-			temp++;
-			//System.out.println("Switching:"+list1[i] + list1[count]);
-			//swap(list1, , count);
 		}
-	}		
+	}	
 	public static int indexOfMin(int first, int[] list1)
 	{
 		int temp = list1[first];
@@ -41,10 +42,9 @@ public class ArrayMethods3 {
 		return index;
 	}
 	public static void selectionSort(double[] list1) {
-		int count = 0;
 		for(int i = 0; i < list1.length; i++)
 		{
-			swap(list1, count ,indexOfMin(i, list1));
+			swap(list1, i, indexOfMin(i, list1));
 		}
 	}
 	public static int indexOfMin(int first, double[] list1)
@@ -60,8 +60,18 @@ public class ArrayMethods3 {
 		}
 		return index;
 	}
-	public static void bubbleSort(String[] list1) {
-		
+	public static void bubbleSort(String[] list) {
+		boolean sorted = false;
+		while(!sorted){
+			sorted = true;
+			for(int i = 0; i < list.length-1; i++) {
+				if(list[i].compareTo(list[i+1])>0)
+				{
+					swap(list, i, i + 1);
+					sorted = false;
+				}
+			}
+		}
 	}
 	public static void printArray(String[] arr)
 	{
@@ -71,7 +81,15 @@ public class ArrayMethods3 {
 		}
 		System.out.println();
 	}
-	public static void printArray2(int[] arr)
+	public static void printArray(int[] arr)
+	{
+		for(int i = 0; i < arr.length; i++)
+		{
+			System.out.print("[" + arr[i] + "]");
+		}
+		System.out.println();
+	}
+	public static void printArray(double[] arr)
 	{
 		for(int i = 0; i < arr.length; i++)
 		{
@@ -97,6 +115,12 @@ public class ArrayMethods3 {
 	public static void swap(double[] arr, int i, int j)
 	{
 		double temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+	public static void swap(String[] arr, int i, int j)
+	{
+		String temp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = temp;
 	}
