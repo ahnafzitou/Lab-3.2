@@ -3,8 +3,7 @@ public class ArrayMethods4
 	public static void main(String args[]){
 		int[] arr = {0,3,4,5,-1,8,2};
 		printArray2(arr);
-		partition(arr,0,6);
-		printArray2(arr);
+		partition2(arr,0,6);
 	}
 	public static void partition(int[] list1,int front,int back ){ 
         int pivot = (front+back)/2;
@@ -26,6 +25,54 @@ public class ArrayMethods4
             }
         }
     }
+	public static void partition2(int[] list1,int front,int back ){ 
+		int pivot = (front+back)/2;
+		boolean partition = false;
+		while(!partition)
+		{
+			partition = true;
+		
+		for(int i = 0; i < front; i++)
+		{
+			
+			if(list1[i] > list1[pivot])
+			{
+				System.out.println("Pivot: "+list1[pivot]);
+				System.out.println(i);
+				System.out.println(pivot);
+				partition = false;
+				System.out.println("Switching: "+list1[i]+" "+list1[pivot]);
+				swap(list1, pivot, i);
+
+			}
+			if(i == pivot)
+			{
+				break;
+			}
+		}
+		for(int j = back; j > pivot; j--)
+		{
+			
+			if(list1[j] < list1[pivot])
+			{
+				System.out.println("Pivot: "+list1[pivot]);
+				System.out.println(j);
+				System.out.println(pivot);
+				partition = false;
+
+				System.out.println("Switching: "+list1[j]+" "+list1[pivot]);
+				swap(list1, pivot, j);
+
+			}
+			if(j == pivot)
+			{
+				break;
+			}
+		}
+	}
+		printArray2(list1);
+	}
+	
 	public static void quickSort(int[] list1, int front, int back)
 	{
 		
