@@ -58,7 +58,15 @@ public class ArrayMethods4
 	
 	public static void quickSort(int[] list1, int front, int back)
 	{
-		
+		if(front==back)
+		{
+			printArray2(list1);
+		}
+		else
+		{
+			quickSort(list1, partition(list1, front, back), back);
+			quickSort(list1, front, partition(list1, front, back));
+		}
 	}
 	public static int indexOfMin(int[] list)
 	{
