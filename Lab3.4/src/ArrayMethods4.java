@@ -1,38 +1,18 @@
 public class ArrayMethods4 
 {
 	public static void main(String args[]){
-		int[] arr = {0,3,4,5,-1,8,2};
+		int[] arr = {5,1,8,3,9,4,2};
 		printArray2(arr);
-		partition2(arr,0,6);
+		partition(arr,0,6);
 	}
 	public static void partition(int[] list1,int front,int back ){ 
-        int pivot = (front+back)/2;
-        int temp;
-        System.out.print(list1[pivot]);
-        while(front <= back){
-            while(list1[front] < list1[pivot])
-            {
-            	front++;
-            }
-            while(list1[back] > list1[pivot]) {
-            	back--;
-            }
-            if(front <= back){
-                temp = list1[front];
-                list1[front]=list1[back];
-                list1[front] = temp;
-                front++;back--;
-            }
-        }
-    }
-	public static void partition2(int[] list1,int front,int back ){ 
 		int pivot = (front+back)/2;
 		boolean partition = false;
 		while(!partition)
 		{
 			partition = true;
 		
-		for(int i = 0; i < front; i++)
+		for(int i = 0; i < pivot; i++)
 		{
 			
 			if(list1[i] > list1[pivot])
@@ -43,6 +23,7 @@ public class ArrayMethods4
 				partition = false;
 				System.out.println("Switching: "+list1[i]+" "+list1[pivot]);
 				swap(list1, pivot, i);
+				pivot = i;
 
 			}
 			if(i == pivot)
@@ -62,6 +43,7 @@ public class ArrayMethods4
 
 				System.out.println("Switching: "+list1[j]+" "+list1[pivot]);
 				swap(list1, pivot, j);
+				pivot = j;
 
 			}
 			if(j == pivot)
