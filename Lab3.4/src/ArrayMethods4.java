@@ -2,10 +2,10 @@ public class ArrayMethods4
 {
 	public static void main(String args[]){
 		int[] arr = {5,1,8,3,9,4,2};
-		printArray2(arr);
+		//printArray2(arr);
 		partition(arr,0,6);
 	}
-	public static void partition(int[] list1,int front,int back ){ 
+	public static int partition(int[] list1,int front,int back ){ 
 		int pivot = (front+back)/2;
 		boolean partition = false;
 		while(!partition)
@@ -53,6 +53,7 @@ public class ArrayMethods4
 		}
 	}
 		printArray2(list1);
+		return pivot;
 	}
 	
 	public static void quickSort(int[] list1, int front, int back)
