@@ -1,9 +1,12 @@
+import java.util.Arrays;
+
 public class ArrayMethods4 
 {
 	public static void main(String args[]){
 		int[] arr = {5,1,8,3,9,4,2};
 		//printArray2(arr);
 		partition(arr,0,6);
+		quickSort(arr,0,6);
 	}
 	public static int partition(int[] list1,int front,int back ){ 
 		int pivot = (front+back)/2;
@@ -64,8 +67,8 @@ public class ArrayMethods4
 		}
 		else
 		{
-			quickSort(list1, partition(list1, front, back), back);
-			quickSort(list1, front, partition(list1, front, back));
+			int temp1 = partition(Arrays.copyOfRange(list1, front, back/2));
+			int temp2 = partition(Arrays.copyOfRange(list1, front/2, back));
 		}
 	}
 	public static int indexOfMin(int[] list)
